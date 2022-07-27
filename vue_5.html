@@ -5,15 +5,15 @@
 		<meta charset="UTF-8">
 		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 		<style>
-			.box{width:200px; height:200px; background:green; border:2px solid black; text-align:center; line-height:200px; color:white;}
+			.box{width:100px; height:100px; background:red; border:2px solid black; text-align:center; line-height:100px; color:white;}
 			.hidden{display:none;}
 		</style>
 	</head>
 	<body>
 	
 	<div id="app">
-		<div v-bind:class="{box:true, hidden:boxHidden}">{{message}}</div>
-		<button v-on:click="showhide();">Click</button>
+		<div v-on:mouseover="increaseHeight();" v-bind:class="{box:true, hidden:boxHidden}" :style="{height:boxHeight+'px'}">{{message}}</div>
+		<br/><button v-on:click="showhide();">{{boxHidden ? 'Show' : 'Hide'}}</button>
 	</div>
 	
 	<script>
@@ -33,6 +33,10 @@
 				}else{
 					this.boxHidden=true;	
 				}
+			},
+			increaseHeight : function() {
+				console.log(this.boxHeight);
+				this.boxHeight = this.boxHeight + 10;
 			}
 		}
 		
